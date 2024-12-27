@@ -1,67 +1,75 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import axios from "axios";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import 'swiper/css/navigation';
+import "swiper/css/navigation";
 // import required modules
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 
-
-
 const ContentCarousel = () => {
-  // Javascript
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    hdlGetImage();
-  }, []);
-
-  const hdlGetImage = () => {
-    // code
-    axios
-      .get("https://picsum.photos/v2/list?page=1&limit=20")
-      .then((res) => setData(res.data))
-      .catch((error) => console.log(error));
-  };
+  const imageUrls = [
+    "/images/mos.jpg", "/images/mos1.jpg", "/images/mos2.jpg", "/images/mos3.jpg",
+    "/images/mos4.jpg", "/images/mos5.jpg", "/images/mos6.jpg", "/images/mos7.jpg",
+    "/images/mos8.jpg", "/images/mos9.jpg", "/images/mos10.jpg", "/images/mos11.jpg",
+    "/images/mos12.jpg", "/images/mos13.jpg"
+  ];
 
   return (
     <div>
+      <style>
+        {`
+          .swiper-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* ความสูงเต็มหน้าจอ */
+          }
+
+          .swiper-slide img {
+            width: 100%; /* ให้ภาพเต็มขนาดที่กำหนด */
+            height: 100%; /* ใช้ความสูงเต็ม */
+            object-fit: cover; /* ควบคุมการจัดวางภาพให้เต็มพื้นที่ */
+          }
+        `}
+      </style>
+
+      {/* สไลด์ที่ 1 */}
       <Swiper
+        slidesPerView={2}  
+        spaceBetween={10}  
         pagination={true}
         modules={[Pagination, Autoplay]}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        className="mySwiper h-80 object-cover 
-        rounded-md mb-4"
+        className="mySwiper h-100 object-cover rounded-md mb-4"
       >
-        {data?.map((item, i) => (
-          <SwiperSlide>
-            <img src={item.download_url} />
+        {imageUrls.map((url, i) => (
+          <SwiperSlide key={i}>
+            <img src={url} alt={`Image ${i + 1}`} />
           </SwiperSlide>
         ))}
       </Swiper>
 
+      {/* สไลด์ที่ 2 */}
       <Swiper
-        slidesPerView={5}
-        spaceBetween={10}
+        slidesPerView={6} 
+        spaceBetween={10}  
         pagination={true}
         navigation={true}
-        modules={[Pagination, Autoplay,Navigation]}
+        modules={[Pagination, Autoplay, Navigation]}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
         className="mySwiper object-cover rounded-md"
       >
-        {data?.map((item, i) => (
-          <SwiperSlide>
-            <img 
-            className="rounded-md"
-            src={item.download_url} />
+        {imageUrls.map((url, i) => (
+          <SwiperSlide key={i}>
+            <img className="rounded-md" src={url} alt={`Image ${i + 1}`} />
           </SwiperSlide>
         ))}
       </Swiper>
