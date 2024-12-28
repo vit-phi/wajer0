@@ -25,7 +25,7 @@ const AboutMe = () => {
     },
     {
       name: "ภาณุเดช สุทธิวงศ์",
-      studentId: "6652300524",
+      studentId: "6652300448",
       github: "https://github.com/9Panudet",
       resume: "https://9panudet.github.io/resume/",
       image: "/images/mos3.jpg"
