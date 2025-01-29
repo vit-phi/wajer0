@@ -41,16 +41,3 @@
   color: #888;
 }
 
-.dark-mode {
-  background-color: #212529 !important;
-  color: white !important;
-}
-
-.dark-mode a {
-  color: #f8f9fa !important;
-}
-
-.dark-mode button {
-  background-color: #495057 !important;
-  color: white !important;
-}
