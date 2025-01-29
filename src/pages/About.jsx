@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 
 const AboutMe = () => {
   const students = [
-    {
-      name: "วรณัฐ สุนันทวนิช",
-      studentId: "6652300842",
-      github: "https://github.com/Rinnosuka",
-      resume: "https://rinnosuka.github.io/resume1.2/",
-      image: "/images/mos.jpg"
-    },
+   
     {
       name: "วิศณุ พิมานรัมย์",
       studentId: "6652300796",
@@ -16,27 +10,7 @@ const AboutMe = () => {
       resume: "https://vit-phi.github.io/Resume.V1/",
       image: "/images/mos1.jpg"
     },
-    {
-      name: "กนกพล ศรีโสพล",
-      studentId: "6652300699",
-      github: "https://github.com/Bomzap220548",
-      resume: "https://bomzap220548.github.io/My--Resume/",
-      image: "/images/mos2.jpg"
-    },
-    {
-      name: "ภาณุเดช สุทธิวงศ์",
-      studentId: "6652300448",
-      github: "https://github.com/9Panudet",
-      resume: "https://9panudet.github.io/resume/",
-      image: "/images/mos3.jpg"
-    },
-    {
-      name: "ศุภสัณห์ มาพันธ์",
-      studentId: "6652300524",
-      github: "https://github.com/Supphasan-Pond/Resume",
-      resume: "https://supphasan-pond.github.io/Resume/",
-      image: "/images/mos4.jpg"
-    }
+    
   ];
 
   // ใช้ useState เพื่อเก็บสถานะของการซูม
