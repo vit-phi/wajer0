@@ -12,8 +12,7 @@ const ContentCarousel = () => {
   const imageUrls = [
     "/images/mos.jpg", "/images/mos1.jpg", "/images/mos2.jpg", "/images/mos3.jpg",
     "/images/mos4.jpg", "/images/mos5.jpg", "/images/mos6.jpg", "/images/mos7.jpg",
-    "/images/mos8.jpg", "/images/mos9.jpg", "/images/mos10.jpg", "/images/mos11.jpg",
-    "/images/mos12.jpg", "/images/mos13.jpg"
+    "/images/mos8.jpg", "/images/mos9.jpg", "/images/mos10.jpg"
   ];
 
   return (

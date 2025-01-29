@@ -5,7 +5,6 @@ const AboutMe = () => {
    
     {
       name: "วิศณุ พิมานรัมย์",
-      studentId: "6652300796",
       github: "https://github.com/vit-phi",
       resume: "https://vit-phi.github.io/Resume.V1/",
       image: "/images/mos1.jpg"
