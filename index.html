@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/jpg" href="/mos777.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>CAI I.T. SHOP</title>
     <!-- Bootstrap CSS -->
     <link
@@ -13,14 +13,76 @@
       crossorigin="anonymous"
     />
     <style>
-      /* เพิ่มสีพื้นหลัง */
+      /* ปรับพื้นหลังและฟอนต์ */
       body {
-        background-color: #ffffff; /* สีพื้นหลังอ่อน */
+        background-color: #f8f9fa; /* สีเทาอ่อนดูสะอาดตา */
+        font-family: 'Arial', sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      
+      /* โหมดกลางคืน */
+      .dark-mode {
+        background-color: #212529 !important;
+        color: white !important;
+      }
+
+      /* จัดการคอนเทนต์ให้สวยขึ้น */
+      .container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      /* ปรับแต่ง Navbar ให้เหมาะกับมือถือ */
+      .navbar {
+        background-color: #007bff;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        color: white;
+      }
+      .navbar-toggler {
+        border: none;
+      }
+      .navbar-toggler:focus {
+        box-shadow: none;
+      }
+      
+      /* ปุ่มเปลี่ยนโหมด */
+      .mode-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
       }
     </style>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- ปุ่มเปลี่ยนโหมดกลางวัน/กลางคืน -->
+    <button class="btn btn-secondary mode-toggle" onclick="toggleMode()">เปลี่ยนโหมด</button>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="#">CAI I.T. SHOP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Products</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div id="root"></div>
+    </div>
+    
     <!-- React Entry Script -->
     <script type="module" src="/src/main.jsx"></script>
     <!-- Bootstrap JS -->
@@ -29,5 +91,10 @@
       integrity="sha384-qSH6sqkc+Qc2OrEZO15zOo3Sjm43Yse2Ez4Y5HjUZJIkC6hDk8yQ5Yd6M8eKvJb3"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function toggleMode() {
+        document.body.classList.toggle('dark-mode');
+      }
+    </script>
   </body>
 </html>
