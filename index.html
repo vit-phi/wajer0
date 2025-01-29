@@ -25,17 +25,12 @@
         background-color: #212529 !important;
         color: white !important;
       }
-
-      /* จัดการคอนเทนต์ให้สวยขึ้น */
-      .container {
-        padding: 20px;
-        max-width: 1200px;
-        margin: auto;
-      }
-
-      /* ปรับแต่ง Navbar ให้เหมาะกับมือถือ */
+      
+      /* Navbar Styling */
       .navbar {
         background-color: #007bff;
+        padding: 10px 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
       }
       .navbar-brand {
         font-weight: bold;
@@ -50,17 +45,19 @@
       
       /* ปุ่มเปลี่ยนโหมด */
       .mode-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
+        border: none;
+        background: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: white;
+        margin-left: 15px;
+      }
+      .mode-toggle:hover {
+        opacity: 0.8;
       }
     </style>
   </head>
   <body>
-    <!-- ปุ่มเปลี่ยนโหมดกลางวัน/กลางคืน -->
-    <button class="btn btn-secondary mode-toggle" onclick="toggleMode()">เปลี่ยนโหมด</button>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
@@ -71,15 +68,17 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">Products</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Shop</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Cart</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
           </ul>
+          <button class="mode-toggle" onclick="toggleMode()">🌙</button>
         </div>
       </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="container mt-4">
       <div id="root"></div>
     </div>
     
@@ -94,6 +93,12 @@
     <script>
       function toggleMode() {
         document.body.classList.toggle('dark-mode');
+        let modeButton = document.querySelector('.mode-toggle');
+        if (document.body.classList.contains('dark-mode')) {
+          modeButton.textContent = '☀️';
+        } else {
+          modeButton.textContent = '🌙';
+        }
       }
     </script>
   </body>
