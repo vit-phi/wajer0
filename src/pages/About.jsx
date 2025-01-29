@@ -28,7 +28,7 @@ const AboutMe = () => {
           {students.map((student, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <h3 className="text-xl font-medium text-gray-800">{student.name}</h3>
-              <p className="text-sm text-gray-600 mt-2">รหัสนักศึกษา: {student.studentId}</p>
+              <p className="text-sm text-gray-600 mt-2"> {student.studentId}</p>
               <div className="mt-4">
                 <p className="text-sm text-gray-600">
                   GitHub: <a href={student.github} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">{student.github}</a>

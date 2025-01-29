@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/jpg" href="/mos777.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CAI I.T. SHOP</title>
     <!-- Bootstrap CSS -->
     <link
@@ -13,75 +13,14 @@
       crossorigin="anonymous"
     />
     <style>
-      /* ปรับพื้นหลังและฟอนต์ */
+      /* เพิ่มสีพื้นหลัง */
       body {
-        background-color: #f8f9fa; /* สีเทาอ่อนดูสะอาดตา */
-        font-family: 'Arial', sans-serif;
-        transition: background-color 0.3s, color 0.3s;
-      }
-      
-      /* โหมดกลางคืน */
-      .dark-mode {
-        background-color: #212529 !important;
-        color: white !important;
-      }
-      
-      /* Navbar Styling */
-      .navbar {
-        background-color: #007bff;
-        padding: 10px 20px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      .navbar-brand {
-        font-weight: bold;
-        color: white;
-      }
-      .navbar-toggler {
-        border: none;
-      }
-      .navbar-toggler:focus {
-        box-shadow: none;
-      }
-      
-      /* ปุ่มเปลี่ยนโหมด */
-      .mode-toggle {
-        border: none;
-        background: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        color: white;
-        margin-left: 15px;
-      }
-      .mode-toggle:hover {
-        opacity: 0.8;
+        background-color: #ffffff; /* สีพื้นหลังอ่อน */
       }
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container">
-        <a class="navbar-brand" href="#">CAI I.T. SHOP</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">Shop</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">Cart</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
-          </ul>
-          <button class="mode-toggle" onclick="toggleMode()">🌙</button>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container mt-4">
-      <div id="root"></div>
-    </div>
-    
+    <div id="root"></div>
     <!-- React Entry Script -->
     <script type="module" src="/src/main.jsx"></script>
     <!-- Bootstrap JS -->
@@ -90,16 +29,5 @@
       integrity="sha384-qSH6sqkc+Qc2OrEZO15zOo3Sjm43Yse2Ez4Y5HjUZJIkC6hDk8yQ5Yd6M8eKvJb3"
       crossorigin="anonymous"
     ></script>
-    <script>
-      function toggleMode() {
-        document.body.classList.toggle('dark-mode');
-        let modeButton = document.querySelector('.mode-toggle');
-        if (document.body.classList.contains('dark-mode')) {
-          modeButton.textContent = '☀️';
-        } else {
-          modeButton.textContent = '🌙';
-        }
-      }
-    </script>
   </body>
 </html>
