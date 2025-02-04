@@ -92,6 +92,18 @@ function MainNav() {
                 </span>
               )}
             </NavLink>
+
+            {/* เมนู About ที่หายไป */}
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-indigo-500 dark:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                  : "hover:bg-indigo-400 hover:text-white dark:hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+              }
+              to="/about"
+            >
+              About
+            </NavLink>
           </div>
 
           {/* ปุ่ม Toggle Dark Mode */}
