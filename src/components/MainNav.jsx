@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useEcomStore from "../store/ecom-store";
-import { ChevronDown, ShoppingCart, User } from "lucide-react";
+import { ChevronDown, ShoppingCart } from "lucide-react";
 
 function MainNav() {
   const carts = useEcomStore((s) => s.carts);
@@ -15,101 +15,129 @@ function MainNav() {
   };
 
   return (
-    <nav className="bg-white shadow-md fixed top-0 w-full z-50">
-      <div className="container mx-auto px-6">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to={"/"} className="text-2xl font-bold text-blue-600">
-            Tast
-          </Link>
+    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+      <div className="container">
+        {/* Logo */}
+        <Link className="navbar-brand fw-bold fs-4 text-primary" to="/">
+          Tast
+        </Link>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-6">
-            {["Home", "Shop", "About"].map((item) => (
+        {/* Navbar Toggler for mobile view */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
               <NavLink
-                key={item}
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-md text-sm font-medium transition ${
-                    isActive ? "bg-blue-500 text-white" : "hover:bg-gray-100"
-                  }`
-                }
-                to={`/${item.toLowerCase()}`}
+                className="nav-link px-3 py-2"
+                to="/"
+                activeClassName="active"
               >
-                {item}
+                Home
               </NavLink>
-            ))}
-
-            {/* Cart */}
-            <NavLink
-              className={({ isActive }) =>
-                `relative flex items-center px-4 py-2 rounded-md text-sm font-medium transition ${
-                  isActive ? "bg-blue-500 text-white" : "hover:bg-gray-100"
-                }`
-              }
-              to={"/cart"}
-            >
-              <ShoppingCart className="w-5 h-5" />
-              {carts.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {carts.length}
-                </span>
-              )}
-            </NavLink>
-          </div>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link px-3 py-2"
+                to="/shop"
+                activeClassName="active"
+              >
+                Shop
+              </NavLink>
+            </li>
+            <li className="nav-item position-relative">
+              <NavLink className="nav-link px-3 py-2" to="/cart">
+                <ShoppingCart className="me-1" />
+                Cart
+                {carts.length > 0 && (
+                  <span className="badge rounded-pill bg-danger position-absolute top-0 end-0 translate-middle">
+                    {carts.length}
+                  </span>
+                )}
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link px-3 py-2"
+                to="/about"
+                activeClassName="active"
+              >
+                About
+              </NavLink>
+            </li>
+          </ul>
 
           {/* User Section */}
-          {user ? (
-            <div className="relative">
-              <button
-                onClick={toggleDropdown}
-                className="flex items-center gap-2 hover:bg-gray-200 px-3 py-2 rounded-md transition"
-              >
-                <User className="w-6 h-6 text-gray-600" />
-                <ChevronDown className="w-4 h-4 text-gray-600" />
-              </button>
+          <ul className="navbar-nav">
+            {user ? (
+              <li className="nav-item dropdown">
+                <button
+                  className="btn btn-light rounded-pill d-flex align-items-center"
+                  onClick={toggleDropdown}
+                >
+                  <img
+                    src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-icon-download-in-svg-png-gif-file-formats--user-professor-avatars-flat-icons-pack-people-456317.png?f=webp&w=256"
+                    alt="User Avatar"
+                    className="rounded-circle me-2"
+                    width="32"
+                    height="32"
+                  />
+                  <ChevronDown />
+                </button>
 
-              {/* Dropdown Menu */}
-              {isOpen && (
-                <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-lg w-40">
-                  <Link
-                    to={"/user/history"}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                {isOpen && (
+                  <ul className="dropdown-menu dropdown-menu-end show">
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/user/history"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        History
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        className="dropdown-item text-danger"
+                        onClick={logout}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </li>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    className="btn btn-outline-success rounded-pill px-4 mx-2"
+                    to="/register"
                   >
-                    History
-                  </Link>
-                  <button
-                    onClick={logout}
-                    className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                    Register
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className="btn btn-primary rounded-pill px-4"
+                    to="/login"
                   >
-                    Logout
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="flex items-center gap-4">
-              <NavLink
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-md text-sm font-medium transition ${
-                    isActive ? "bg-green-500 text-white" : "hover:bg-gray-100"
-                  }`
-                }
-                to={"/register"}
-              >
-                Register
-              </NavLink>
-              <NavLink
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-md text-sm font-medium transition ${
-                    isActive ? "bg-blue-500 text-white" : "hover:bg-gray-100"
-                  }`
-                }
-                to={"/login"}
-              >
-                Login
-              </NavLink>
-            </div>
-          )}
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
       </div>
     </nav>
