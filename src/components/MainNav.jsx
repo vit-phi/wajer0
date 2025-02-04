@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useEcomStore from "../store/ecom-store";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 function MainNav() {
   const carts = useEcomStore((s) => s.carts);
@@ -9,28 +9,37 @@ function MainNav() {
   const logout = useEcomStore((s) => s.logout);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <nav className="bg-white shadow-md">
       <div className="mx-auto px-4">
-        <div className="flex justify-between h-16">
-          {/* Group of navigation links */}
-          <div className="flex items-center gap-6">
-            <Link to={"/"} className="text-2xl font-bold">
-              CAI I.T. SHOP
-            </Link>
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold">
+            CAI I.T. SHOP
+          </Link>
 
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-gray-700"
+            onClick={toggleMenu}
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+
+          {/* Navigation Links (Hidden in Mobile, Shown in Desktop) */}
+          <div className={`md:flex gap-6 items-center ${isMenuOpen ? "block absolute top-16 left-0 w-full bg-white shadow-md p-4 z-50" : "hidden md:flex"}`}>
             <NavLink
               className={({ isActive }) =>
                 isActive
                   ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
+                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium"
               }
-              to={"/"}
+              to="/"
             >
               Home
             </NavLink>
@@ -39,9 +48,9 @@ function MainNav() {
               className={({ isActive }) =>
                 isActive
                   ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
+                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium"
               }
-              to={"/shop"}
+              to="/shop"
             >
               Shop
             </NavLink>
@@ -50,15 +59,13 @@ function MainNav() {
               className={({ isActive }) =>
                 isActive
                   ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
+                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium"
               }
-              to={"/cart"}
+              to="/cart"
             >
               Cart
               {carts.length > 0 && (
-                <span
-                  className="absolute top-0 bg-red-500 rounded-full px-2"
-                >
+                <span className="ml-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
                   {carts.length}
                 </span>
               )}
@@ -68,71 +75,71 @@ function MainNav() {
               className={({ isActive }) =>
                 isActive
                   ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
+                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium"
               }
-              to={"/about"}
+              to="/about"
             >
               About
             </NavLink>
+
+            {/* User Section */}
+            {user ? (
+              <div className="relative">
+                <button
+                  onClick={toggleDropdown}
+                  className="flex items-center gap-2 hover:bg-gray-200 px-2 py-3 rounded-md"
+                >
+                  <img
+                    className="w-8 h-8"
+                    src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-icon-download-in-svg-png-gif-file-formats--user-professor-avatars-flat-icons-pack-people-456317.png?f=webp&w=256"
+                    alt="User Avatar"
+                  />
+                  <ChevronDown />
+                </button>
+
+                {isOpen && (
+                  <div className="absolute top-12 bg-white shadow-md z-50 w-32">
+                    <Link
+                      to="/user/history"
+                      className="block px-4 py-2 hover:bg-gray-200"
+                    >
+                      History
+                    </Link>
+                    <button
+                      onClick={logout}
+                      className="block px-4 py-2 hover:bg-gray-200 w-full text-left"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+                      : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium"
+                  }
+                  to="/register"
+                >
+                  Register
+                </NavLink>
+
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+                      : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium"
+                  }
+                  to="/login"
+                >
+                  Login
+                </NavLink>
+              </>
+            )}
           </div>
-
-          {/* User section */}
-          {user ? (
-            <div className="flex items-center gap-4">
-              <button
-                onClick={toggleDropdown}
-                className="flex items-center gap-2 hover:bg-gray-200 px-2 py-3 rounded-md"
-              >
-                <img
-                  className="w-8 h-8"
-                  src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-icon-download-in-svg-png-gif-file-formats--user-professor-avatars-flat-icons-pack-people-456317.png?f=webp&w=256"
-                  alt="User Avatar"
-                />
-                <ChevronDown />
-              </button>
-
-              {isOpen && (
-                <div className="absolute top-16 bg-white shadow-md z-50">
-                  <Link
-                    to={"/user/history"}
-                    className="block px-4 py-2 hover:bg-gray-200"
-                  >
-                    History
-                  </Link>
-                  <button
-                    onClick={() => logout()}
-                    className="block px-4 py-2 hover:bg-gray-200"
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="flex items-center gap-4">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                    : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
-                }
-                to={"/register"}
-              >
-                Register
-              </NavLink>
-
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                    : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
-                }
-                to={"/login"}
-              >
-                Login
-              </NavLink>
-            </div>
-          )}
         </div>
       </div>
     </nav>
