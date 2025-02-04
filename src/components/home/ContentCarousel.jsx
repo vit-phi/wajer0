@@ -10,11 +10,10 @@ import { Pagination, Autoplay } from "swiper/modules";
 
 const ContentCarousel = () => {
   const imageUrls = [
-    "/images/1.jpg", "/images/11.jpg", "/images/2.jpg", "/images/3.jpg",
-    "/images/4.jpg", "/images/5.jpg", "/images/6.jpg", "/images/7.jpg",
-    "/images/8.jpg", "/images/9.jpg", "/images/10.jpg"
+    "/images/mos.jpg", "/images/mos1.jpg", "/images/mos2.jpg", "/images/mos3.jpg",
+    "/images/mos4.jpg", "/images/mos5.jpg", "/images/mos6.jpg", "/images/mos7.jpg",
+    "/images/mos8.jpg", "/images/mos9.jpg", "/images/mos10.jpg"
   ];
-
   return (
     <div>
       <style>
