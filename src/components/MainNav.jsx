@@ -14,7 +14,7 @@ function MainNav() {
     localStorage.getItem("theme") === "dark"
   );
 
-  // เปลี่ยนโหมดและบันทึกลง localStorage
+  // บันทึก Dark Mode ลง localStorage
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
@@ -30,20 +30,20 @@ function MainNav() {
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
-    <nav className="bg-gradient-to-r from-indigo-500 to-blue-500 dark:from-gray-900 dark:to-gray-800 shadow-lg">
+    <nav className="bg-gradient-to-r from-[#FF9F43] to-[#FC466B] dark:from-[#2C3E50] dark:to-[#4CA1AF] shadow-lg transition-all duration-500">
       <div className="mx-auto px-6">
         <div className="flex justify-between h-16 items-center">
           {/* Brand และ Hamburger Menu */}
           <div className="flex items-center gap-6">
             <Link
               to="/"
-              className="text-3xl font-bold text-white dark:text-gray-300 tracking-wide"
+              className="text-3xl font-extrabold text-white dark:text-[#F4C724] tracking-wide"
             >
               Tast
             </Link>
             <button
               onClick={toggleMenu}
-              className="md:hidden text-white dark:text-gray-300 focus:outline-none"
+              className="md:hidden text-white dark:text-[#F4C724] focus:outline-none"
             >
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -53,63 +53,27 @@ function MainNav() {
           <div
             className={`${
               isMenuOpen ? "flex" : "hidden"
-            } md:flex flex-col md:flex-row absolute md:relative bg-white dark:bg-gray-800 w-full md:w-auto top-16 left-0 md:top-0 md:left-auto z-50 md:z-auto shadow-lg md:shadow-none rounded-lg md:rounded-none transition-all duration-300 ease-in-out`}
+            } md:flex flex-col md:flex-row absolute md:relative bg-white dark:bg-[#2C3E50] w-full md:w-auto top-16 left-0 md:top-0 md:left-auto z-50 md:z-auto shadow-lg md:shadow-none rounded-lg md:rounded-none transition-all duration-300`}
           >
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-indigo-500 dark:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-                  : "hover:bg-indigo-400 hover:text-white dark:hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-              }
-              to="/"
-            >
-              Home
-            </NavLink>
-
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-indigo-500 dark:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-                  : "hover:bg-indigo-400 hover:text-white dark:hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-              }
-              to="/shop"
-            >
-              Shop
-            </NavLink>
-
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-indigo-500 dark:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-                  : "hover:bg-indigo-400 hover:text-white dark:hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-              }
-              to="/cart"
-            >
-              Cart
-              {carts.length > 0 && (
-                <span className="ml-2 bg-red-600 text-white rounded-full px-2 py-0.5 text-xs">
-                  {carts.length}
-                </span>
-              )}
-            </NavLink>
-
-            {/* เมนู About ที่หายไป */}
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-indigo-500 dark:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-                  : "hover:bg-indigo-400 hover:text-white dark:hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-              }
-              to="/about"
-            >
-              About
-            </NavLink>
+            {["Home", "Shop", "Cart", "About"].map((item) => (
+              <NavLink
+                key={item}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-[#FC466B] dark:bg-[#4CA1AF] text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                    : "hover:bg-[#FF9F43] dark:hover:bg-[#34495E] px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-gray-800 dark:text-gray-300"
+                }
+                to={`/${item.toLowerCase()}`}
+              >
+                {item}
+              </NavLink>
+            ))}
           </div>
 
           {/* ปุ่ม Toggle Dark Mode */}
           <button
             onClick={toggleDarkMode}
-            className="bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2"
+            className="bg-white dark:bg-[#34495E] text-gray-800 dark:text-[#F4C724] px-3 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2"
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -119,7 +83,7 @@ function MainNav() {
             <div className="relative">
               <button
                 onClick={toggleDropdown}
-                className="flex items-center gap-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                className="flex items-center gap-2 bg-white dark:bg-[#34495E] px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
               >
                 <img
                   className="w-8 h-8 rounded-full"
@@ -130,10 +94,10 @@ function MainNav() {
               </button>
 
               {isOpen && (
-                <div className="absolute top-12 right-0 bg-white dark:bg-gray-700 shadow-lg rounded-lg py-2 w-40 z-50">
+                <div className="absolute top-12 right-0 bg-white dark:bg-[#2C3E50] shadow-lg rounded-lg py-2 w-40 z-50">
                   <Link
                     to="/user/history"
-                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-indigo-500 dark:hover:bg-gray-600 hover:text-white transition-all duration-300"
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-[#FF9F43] dark:hover:bg-[#4CA1AF] hover:text-white transition-all duration-300"
                   >
                     History
                   </Link>
@@ -151,8 +115,8 @@ function MainNav() {
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-indigo-500 dark:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-                    : "hover:bg-indigo-400 hover:text-white dark:hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                    ? "bg-[#FC466B] dark:bg-[#4CA1AF] text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                    : "hover:bg-[#FF9F43] dark:hover:bg-[#34495E] px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-gray-800 dark:text-gray-300"
                 }
                 to="/login"
               >
