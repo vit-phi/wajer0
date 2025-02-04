@@ -9,10 +9,10 @@ const Home = () => {
     <div>
       <ContentCarousel />
 
-      <p className="text-2xl text-center my-4">สินค้าขายดี</p>
+      <p className="text-2xl text-center my-4">แนะนำ</p>
       <BestSeller />
 
-      <p className="text-2xl text-center my-4">สินค้าใหม่</p>
+      <p className="text-2xl text-center my-4">NEW</p>
       <NewProduct />
 
 
