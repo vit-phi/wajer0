@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useEcomStore from "../store/ecom-store";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ShoppingCart, User } from "lucide-react";
 
 function MainNav() {
   const carts = useEcomStore((s) => s.carts);
@@ -15,93 +15,71 @@ function MainNav() {
   };
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="mx-auto px-4">
-        <div className="flex justify-between h-16">
-          {/* Group of navigation links */}
-          <div className="flex items-center gap-6">
-            <Link to={"/"} className="text-2xl font-bold">
-              CAI I.T. SHOP
-            </Link>
+    <nav className="bg-white shadow-md fixed top-0 w-full z-50">
+      <div className="container mx-auto px-6">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to={"/"} className="text-2xl font-bold text-blue-600">
+            Tast
+          </Link>
 
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center gap-6">
+            {["Home", "Shop", "About"].map((item) => (
+              <NavLink
+                key={item}
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-md text-sm font-medium transition ${
+                    isActive ? "bg-blue-500 text-white" : "hover:bg-gray-100"
+                  }`
+                }
+                to={`/${item.toLowerCase()}`}
+              >
+                {item}
+              </NavLink>
+            ))}
+
+            {/* Cart */}
             <NavLink
               className={({ isActive }) =>
-                isActive
-                  ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
-              }
-              to={"/"}
-            >
-              Home
-            </NavLink>
-
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
-              }
-              to={"/shop"}
-            >
-              Shop
-            </NavLink>
-
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
+                `relative flex items-center px-4 py-2 rounded-md text-sm font-medium transition ${
+                  isActive ? "bg-blue-500 text-white" : "hover:bg-gray-100"
+                }`
               }
               to={"/cart"}
             >
-              Cart
+              <ShoppingCart className="w-5 h-5" />
               {carts.length > 0 && (
-                <span
-                  className="absolute top-0 bg-red-500 rounded-full px-2"
-                >
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {carts.length}
                 </span>
               )}
             </NavLink>
-
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                  : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
-              }
-              to={"/about"}
-            >
-              About
-            </NavLink>
           </div>
 
-          {/* User section */}
+          {/* User Section */}
           {user ? (
-            <div className="flex items-center gap-4">
+            <div className="relative">
               <button
                 onClick={toggleDropdown}
-                className="flex items-center gap-2 hover:bg-gray-200 px-2 py-3 rounded-md"
+                className="flex items-center gap-2 hover:bg-gray-200 px-3 py-2 rounded-md transition"
               >
-                <img
-                  className="w-8 h-8"
-                  src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-icon-download-in-svg-png-gif-file-formats--user-professor-avatars-flat-icons-pack-people-456317.png?f=webp&w=256"
-                  alt="User Avatar"
-                />
-                <ChevronDown />
+                <User className="w-6 h-6 text-gray-600" />
+                <ChevronDown className="w-4 h-4 text-gray-600" />
               </button>
 
+              {/* Dropdown Menu */}
               {isOpen && (
-                <div className="absolute top-16 bg-white shadow-md z-50">
+                <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-lg w-40">
                   <Link
                     to={"/user/history"}
-                    className="block px-4 py-2 hover:bg-gray-200"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
                     History
                   </Link>
                   <button
-                    onClick={() => logout()}
-                    className="block px-4 py-2 hover:bg-gray-200"
+                    onClick={logout}
+                    className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                   >
                     Logout
                   </button>
@@ -112,20 +90,19 @@ function MainNav() {
             <div className="flex items-center gap-4">
               <NavLink
                 className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                    : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
+                  `px-4 py-2 rounded-md text-sm font-medium transition ${
+                    isActive ? "bg-green-500 text-white" : "hover:bg-gray-100"
+                  }`
                 }
                 to={"/register"}
               >
                 Register
               </NavLink>
-
               <NavLink
                 className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
-                    : "hover:bg-slate-200 px-3 py-2 rounded-md text-sm font-medium "
+                  `px-4 py-2 rounded-md text-sm font-medium transition ${
+                    isActive ? "bg-blue-500 text-white" : "hover:bg-gray-100"
+                  }`
                 }
                 to={"/login"}
               >

@@ -19,7 +19,7 @@ const ListCart = () => {
     await createUserCart(token, { cart })
       .then((res) => {
         console.log(res);
-        toast.success("บันทึกใส่ตะกร้าเรียบร้อยแล้วจ้า", {
+        toast.success("บันทึกใส่ตะกร้าเรียบร้อย", {
           position: "top-center",
         });
         navigate("/checkout");
