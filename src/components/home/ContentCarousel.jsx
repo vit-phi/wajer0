@@ -35,7 +35,7 @@ const ContentCarousel = () => {
 
       {/* สไลด์ที่ 1 */}
       <Swiper
-        slidesPerView={5}  
+        slidesPerView={3}  
         spaceBetween={10}  
         pagination={true}
         modules={[Pagination, Autoplay]}
