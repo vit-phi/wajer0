@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useEcomStore from "../store/ecom-store";
-import { ChevronDown, Menu, X, Sun, Moon, LogIn } from "lucide-react";
+import { ChevronDown, Menu, X, Sun, Moon, LogIn, UserPlus } from "lucide-react";
 
 function MainNav() {
   const carts = useEcomStore((s) => s.carts);
@@ -47,7 +47,7 @@ function MainNav() {
             </button>
           </div>
 
-          <div className={`$ {isMenuOpen ? "flex" : "hidden"} md:flex flex-col md:flex-row absolute md:relative bg-white dark:bg-gray-800 w-full md:w-auto top-16 left-0 md:top-0 md:left-auto z-50 md:z-auto shadow-lg md:shadow-none rounded-lg md:rounded-none transition-all duration-300 ease-in-out`}>
+          <div className={`${isMenuOpen ? "flex" : "hidden"} md:flex flex-col md:flex-row absolute md:relative bg-white dark:bg-gray-800 w-full md:w-auto top-16 left-0 md:top-0 md:left-auto z-50 md:z-auto shadow-lg md:shadow-none rounded-lg md:rounded-none transition-all duration-300 ease-in-out`}>
             {["Home", "Shop", "Cart", "About"].map((item) => (
               <NavLink
                 key={item}
@@ -95,9 +95,14 @@ function MainNav() {
               )}
             </div>
           ) : (
-            <NavLink to="/login" className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 hover:from-green-500 hover:to-blue-600">
-              <LogIn size={18} /> Login
-            </NavLink>
+            <div className="flex gap-4">
+              <NavLink to="/login" className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 hover:from-green-500 hover:to-blue-600">
+                <LogIn size={18} /> Login
+              </NavLink>
+              <NavLink to="/signup" className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 hover:from-yellow-500 hover:to-orange-600">
+                <UserPlus size={18} /> Sign Up
+              </NavLink>
+            </div>
           )}
         </div>
       </div>
