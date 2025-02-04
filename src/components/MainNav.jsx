@@ -20,7 +20,7 @@ function MainNav() {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold">
-            CAI I.T. SHOP
+            123
           </Link>
 
           {/* Mobile Menu Button */}
