@@ -6,8 +6,8 @@ const AboutMe = () => {
     {
       name: "วิศณุ พิมานรัมย์",
       github: "https://github.com/vit-phi",
-      resume: "https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.canva.com%2Fdesign%2FDAGeKNw_1-U%2FIu1VVW0k08brTA64_0Vi7g%2Fview%3Futm_content%3DDAGeKNw_1-U%26utm_campaign%3Ddesignshare%26utm_medium%3Dlink2%26utm_source%3Duniquelinks%26utlId%3Dh060b4f94fc%26fbclid%3DIwZXh0bgNhZW0CMTAAAR1Rod5WJ7X5REqwxw6-m53xKdFtK9_fcTiq47O-Duggq5-tr5x6xSQkU4k_aem_befNJjXip3Dr6eV4Y-MN2g&h=AT3UlcSnbD7yYu75P_GleeXnQMK5xC0IO4_yiPqq3jX-YX_dvivKi-liMWPytInntqn0c4JQpp_47giXw2idyaP-CxU7Bm2Gou5wR1i1mm4XCdyc8a_11Kv5fkiJJmEnmR_Hgw",
-      image: "/images/mos1.jpg"
+      resume: "https://1th.me/KOtuN",
+      image: "/images/abc.jpg"
     },
     
   ];
