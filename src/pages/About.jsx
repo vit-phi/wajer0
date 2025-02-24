@@ -7,8 +7,9 @@ const AboutMe = () => {
       name: "วิศณุ พิมานรัมย์",
       github: "https://github.com/vit-phi",
       resume: "https://1th.me/KOtuN",
-      image: "/images/abc.jpg",
-      mos: "https://1th.me/xkQDC"
+      mos: "https://1th.me/xkQDC",
+      image: "/images/abc.jpg"
+      
     },
     
   ];
