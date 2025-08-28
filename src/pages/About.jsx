@@ -4,10 +4,9 @@ const AboutMe = () => {
   const students = [
    
     {
-      name: "วิศณุ พิมานรัมย์",
-      github: "https://github.com/vit-phi",
-      resume: "https://1th.me/KOtuN ==== https://1th.me/xkQDC",
-      mos: "https://1th.me/xkQDC",
+      name: "นาย วิศณุ พิมานรัมย์ 6652300796",
+      name: "นาย กนกพล ศรีโสพล 6652300699",
+      
       image: "/images/abc.jpg"
       
     },
